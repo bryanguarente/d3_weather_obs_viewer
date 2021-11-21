@@ -13,3 +13,6 @@ The initial data that is found in the "data" folder is meant to be a starting po
 bash get_latest.bash
 
 This bash script replaces those already in the data folder with the latest observations from api.weather.gov (from the National Weather Service).
+
+In some instances, you will need to remove some of the json files that are downloaded but contain no data or "File Not Found" errors.  To do this from a linux/mac terminal window, I usually use:
+find . -name "*.json" -type 'f' -size -1k -delete
