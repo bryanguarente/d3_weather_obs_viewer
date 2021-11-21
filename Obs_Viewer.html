@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="Bryan Guarente">
+<link rel="shortcut icon" href="media/favicon.ico">
+<title>Obs Viewer from NWS</title>
+
+<!-- <script src="d3/d3.v3.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.1.1/d3.min.js"></script>
+<script src="d3/topojson.v1.min.js"></script>
+<script src="jQuery/jquery.min.js"></script>
+<script src="data/COstationList.js"></script>
+
+<style type="text/css">
+    #topBar {
+        overflow: hidden;
+        min-width: 1000px;
+        max-width: 1000px;
+        background-color: lightslategray;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        color: lightgray;
+        padding: 10px 0px 0px 0px;
+    }
+
+    #info {
+        float: left;
+        width: 25%;
+        padding: 0px 10px;
+    }
+
+    #filters {
+        float: left;
+        padding: 0px 20px;
+        width: 45%;
+        border-left: 4px solid slategray; 
+        border-right: 4px solid slategray; 
+    }
+
+    #viewButtons {
+        float: left;
+        width: 20%;
+        height: 94px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .button {
+        background-color: skyblue;
+        border: none;
+        color: black;
+        padding: 10px 15px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border:0.15em solid #CCCCCC;
+        border-radius: 5px;
+        box-shadow: 2px 2px #444444;
+    }
+    .button:hover{
+        border-color: #507a80;
+    }
+    .button:active{
+        background-color:#507a80;
+        box-shadow: none;
+        color: lightgray;
+    }
+
+/*    svg {
+        position: relative;
+        border: 2px lightslategray solid;
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+*/
+
+    .lastUpdate {
+        position: relative;
+        clear: both;
+    }
+	.state {
+		fill: none;
+		stroke: black;
+		stroke-width: 4px;
+  		stroke-linejoin: round;
+	}
+	.county {
+		fill: none;
+		stroke: grey;
+		stroke-width: 2.5px;
+  		stroke-linejoin: round;
+	}
+    .roads {
+        fill: none;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+    }
+    
+    .river {
+        fill: none;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+        stroke: #a1a1da;
+    }
+
+    .obs {
+        fill: white;
+        stroke-width: 1.5px;
+        stroke: black;
+        fill-opacity: 0;
+    }
+
+    .blueFill {
+        fill: skyblue;
+        background-color: skyblue !important; 
+    }
+
+    .flex-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        max-width: 1500px;
+        min-width: 1000px;
+    }
+
+    svg rect {
+        fill: white;
+        border: 2px solid black;
+    }
+
+    svg text {
+        font-family: "Arial, Helvetica, sans-serif"
+    }
+
+    .windBarb {
+        fill: black;
+        stroke: black;
+        stroke-width: 1px;
+    }
+
+    .inactiveBarb {
+        fill: black;
+        stroke: black;
+        stroke-width: 1px;
+    }
+
+</style>
+</head>
+<body>
+
+    <div id="topBar">
+        <div id="info">
+            <p><span class="lastUpdate"></span><br>
+            Temp Units: <select id="tempUnits">
+                <option value="fahrenheit">˚F</option>
+                <option value="celsius">˚C</option>
+                <option value="kelvin">K</option>
+            </select><br>
+            Wind Units: <select id="windUnits">
+                <option value="kts">kts</option>
+                <option value="kph">kph</option>
+                <option value="mph">mph</option>
+                <option value="ms">m/s</option>
+            </select>
+        </p>
+        </div>
+
+        <div id="filters">
+            <p>
+            Filter by State:
+                <select id="state">
+                    <option value="none">--</option>
+                </select>
+            </p>
+            <p>
+            Change Date:
+                <input type="date" id="myDate"> 
+            </p>
+        </div>
+        <div id="viewButtons">
+            <button id="Reset" class="button" type="button" value="Reset View">Reset View</button>
+        </div>
+    </div>
+
+    <div class="flex-container">
+        <script src="jQuery/ObsViewer.js"></script>
+    </div>
+
+</body>
+</html>
